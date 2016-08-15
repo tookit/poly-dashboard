@@ -29,9 +29,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         tail="{{subroute}}"></app-route>
 
     <iron-pages role="main" selected="[[page]]" attr-for-selected="name">
-      <page-login name="login"></page-login>
-      <page-dashboard name="dashboard"></page-dashboard>
-      <page-user name="user"></page-user>
+      <page-login name="login" page="[[page]]"></page-login>
+      <page-dashboard name="dashboard" page="[[page]]"></page-dashboard>
+      <page-user name="user" page="[[page]]"></page-user>
     </iron-pages>
   </template>
 
@@ -54,6 +54,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       observers: [
         '_routePageChanged(routeData.page)'
       ],
+
+      ready: function(){
+
+      },
 
       _routePageChanged: function(page) {
         this.page = page || 'login';
