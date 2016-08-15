@@ -57,12 +57,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       .drawer-list a.subroute {
         padding-left: 32px;
       }
-      /*paper-item {
-        --paper-item: {
-          cursor: pointer;
-        };
-      }*/
 
+      paper-menu  a{
+        display: block;
+        text-decoration: none;
+        color: #464646;
+        padding: 7px 15px;
+        padding-left: 12px;
+        /*display: table;*/
+        /*width: 100%;*/
+        white-space: nowrap;        
+      }
+       a > iron-icon{
+        padding:5px;
+      }
     </style>
 
 
@@ -71,27 +79,19 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       <!-- Drawer content -->
       <app-drawer>
-        <app-toolbar>Menu</app-toolbar>
-        <!-- <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">
-          <a name="view1" href="/view1">View One</a>
-          <a name="view2" href="/view2">View Two</a>
-          <a name="view3" href="/view3">View Three</a>
-
-        </iron-selector> -->
+        <app-toolbar class="side-toolbar">Menu</app-toolbar>
         <paper-menu attr-for-selected="name" selected="[[page]]" role="navigation">
+          <a class="menu-trigger" href="#">
+            <iron-icon icon="menu"></iron-icon>  Dashboard
+          </a>
           <paper-submenu>
-            <paper-item class="menu-trigger">Topics</paper-item>
-            <paper-menu class="menu-content">
-              <a href="/view1"><paper-item name="view1">Topic 1</paper-item></a>
-              <a href="/view2"><paper-item name="view2">Topic 2</paper-item></a>
-              <a href="/view3"><paper-item name="view3">Topic 3</paper-item></a>
-            </paper-menu>
-          </paper-submenu>
-          <paper-submenu>
-            <paper-item class="menu-trigger">Faves</paper-item>
-            <paper-menu class="menu-content">
-              <paper-item>Fave 1</paper-item>
-              <paper-item>Fave 2</paper-item>
+            <a class="menu-trigger" href="#">
+              <iron-icon icon="menu"></iron-icon>  Dashboard
+            </a>
+            <paper-menu attr-for-selected="name" class="menu-content" selected="[[page]]">
+              <a href="/dashboard" name$="[[page]]">Topic 1</a>
+              <a href="/view2">Topic 2</a>
+              <a href="/view3">Topic 3</a>
             </paper-menu>
           </paper-submenu>
         </paper-menu>
@@ -101,7 +101,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <app-header-layout has-scrolling-region>
 
         <app-header condenses reveals effects="waterfall">
-          <app-toolbar>
+          <app-toolbar class="main-toolbar">
             <paper-icon-button icon="menu" drawer-toggle></paper-icon-button>
             <div title>My App</div>
           </app-toolbar>

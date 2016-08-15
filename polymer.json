@@ -2,8 +2,8 @@
   "entrypoint": "index.html",
   "shell": "src/my-app.html",
   "fragments": [
-    "src/my-view1.html",
-    "src/my-view2.html",
-    "src/my-view3.html"
+    "src/pages/login.html",
+    "src/pages/dashboard.html",
+    "src/pages/page-template.html"
   ]
 }
