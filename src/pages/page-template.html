@@ -23,6 +23,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../../bower_components/iron-icons/iron-icons.html">
 <link rel="import" href="../../bower_components/iron-icons/hardware-icons.html">
 <link rel="import" href="../../bower_components/iron-icons/maps-icons.html">
+<link rel="import" href="../../bower_components/iron-media-query/iron-media-query.html">
 
 <link rel="import" href="../elements/data.html">
 
@@ -32,10 +33,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <style include="iron-flex iron-flex-alignment">
     <style>
 
-      :host{
-        background: #fff;
-        color:#212121;
-      }
 
       app-toolbar.side-toolbar {
         background-color: var(--dark-primary-color);
@@ -63,14 +60,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         -webkit-font-smoothing:antialiased;
         font-weight: 300;
         line-height: 36px;
-
-
       }
-       a > iron-icon{
+
+      iron-icon[hidden]{
+        display: none;
+      }
+
+      a > iron-icon{
         /*padding:5px;*/
-        margin-right:30px;
         opacity: 0.54;
         padding:6px 0;
+      }
+
+      a span{
+        margin-left: 30px;
       }
 
       a.iron-selected, a:hover {
@@ -111,36 +114,37 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       margin: 0;
       padding:5px 0;
     }
-    </style>
 
+    </style>
+    <iron-media-query query="(min-width: 640px)" query-matches="{{largeScreen}}"></iron-media-query>
     <app-data menu="{{menu}}"></app-data>
 
-    <app-drawer-layout fullbleed>
+    <app-drawer-layout fullbleed id="drawerLayout">
 
       <!-- Drawer content -->
-      <app-drawer>
+      <app-drawer id="leftDrawer">
         <app-toolbar class="side-toolbar">Menu</app-toolbar>
         <div class="profile layout horizontal">
           <img src="http://solutionportal.net/projects/materia/angular/images/admin.jpg" alt="admin">
-          <div class="personal flex">
+          <div class="personal flex" hidden$="[[narrowDrawer]]">
       			<h5 class="name">Robert Smith</h5>
       			<small class="desig text-uppercase">UX Designer</small>
       		</div>
         </div>
         <paper-menu attr-for-selected="name" selected="[[page]]" role="navigation">
-
           <template is="dom-repeat" items="[[menu]]">
             <template is="dom-if" if="[[item.subMenu]]">
               <paper-submenu opened="[[_computeOpened(item.subMenu,page)]]">
                 <a class="menu-trigger layout horizontal" href="[[item.url]]" name="[[item.url]]">
                   <iron-icon icon="[[item.icon]]"></iron-icon>
-                  <span class="flex">[[item.title]]</span>
-                  <iron-icon icon="[[_computeIconControl(item.subMenu,page)]]" class="control"></iron-icon>
+                  <span class="flex" hidden$="[[narrowDrawer]]">[[item.title]]</span>
+                  <iron-icon icon="[[_computeIconControl(item.subMenu,page)]]" class="control" hidden$="[[narrowDrawer]]"></iron-icon>
                 </a>
                 <paper-menu attr-for-selected="name" class="menu-content sub-menu" selected="[[page]]">
                   <template is="dom-repeat" items="[[item.subMenu]]">
                       <a class="layout horizontal" href="[[item.url]]" name$="[[item.url]]">
-                        <iron-icon icon="[[item.icon]]"></iron-icon>  <span>[[item.title]]</span>
+                        <iron-icon icon="[[item.icon]]"></iron-icon>
+                        <span hidden$="[[narrowDrawer]]">[[item.title]]</span>
                       </a>
                   </template>
                 </paper-menu>
@@ -148,7 +152,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             </template>
             <template is="dom-if" if="[[!item.subMenu]]">
               <a class="layout horizontal" href="/[[item.url]]" name$="[[item.url]]">
-                <iron-icon icon="[[item.icon]]"></iron-icon>  <span>[[item.title]]</span>
+                <iron-icon icon="[[item.icon]]"></iron-icon>
+                <span hidden$="[[narrowDrawer]]">[[item.title]]</span>
               </a>
             </template>
           </template>
@@ -160,7 +165,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         <app-header condenses reveals effects="waterfall">
           <app-toolbar class="main-toolbar">
-            <paper-icon-button icon="menu" drawer-toggle></paper-icon-button>
+            <paper-icon-button icon="menu" on-tap="toogleLeftDrawer"></paper-icon-button>
             <div title>My App</div>
           </app-toolbar>
         </app-header>
@@ -191,6 +196,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           reflectToAttribute: true,
           // observer: '_pageChanged'
         },
+        narrowDrawer:{
+          type: Boolean,
+          notify: true,
+          value: false
+        }
 
       },
 
@@ -215,9 +225,26 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       },
 
+      toogleLeftDrawer: function(e){
+        var currentDrawerWidth = this.$.leftDrawer.getWidth(), newDrawerWidth = "";
+        //set narrowDrawer true
+
+        if(!this.largeScreen){
+          this.$.leftDrawer.toggle();
+        }else{
+          newDrawerWidth = (currentDrawerWidth === 256) ? "64px":"256px"
+          this.narrowDrawer = (currentDrawerWidth === 256) ? true : false;
+          this.$.leftDrawer.customStyle['--app-drawer-width'] = newDrawerWidth;
+
+          this.$.leftDrawer.updateStyles();
+          this.$.drawerLayout.resetLayout();
+          // this.customStyle['--iron-icon-width'] = '36px';
+          // this.updateStyles();
+        }
+      },
 
       ready: function() {
-        console.log(this.page);
+        console.log(this.largeScreen);
       }
 
     });
