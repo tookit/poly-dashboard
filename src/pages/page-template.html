@@ -93,8 +93,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
       .content-wrapper{
         padding:15px;
+        
       }
-
+      .content-wrapper ::content{
+        min-height: 100vh;
+      };
     /* user profile */
 
     .profile {
@@ -215,6 +218,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <content select=".content">
 
           </content>
+          <div class="horizontal center-justified layout">
+            <div class="footer">2015@ Cronman</div>
+          </div>          
         </div>
 
       </app-header-layout>

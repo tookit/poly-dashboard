@@ -48,6 +48,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       },
 
+      listeners: {
+
+        'nav': 'handleNav',
+        'page-meta': 'updateTitle',
+        // 'session': 'updateSession',
+        'toast': 'showToast'
+
+      },
+
       observers: [
         '_routePageChanged(routeData.page)'
       ],
@@ -62,9 +71,26 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       _pageChanged: function(page) {
         // load page import on demand.
+        this.updateTitle(page);
         this.importHref(
           this.resolveUrl('pages/' + page + '.html'), null, null, true);
-      }
+      },
+
+      updateTitle: function(page){
+
+        var pageTitle = 'POLY - ' + page.toUpperCase();
+        window.document.title = pageTitle;
+
+      },
+
+      showToast: function(e, detail) {
+        if (!this._toast) {
+          this._toast = document.createElement('paper-toast');
+          Polymer.dom(this.$.router).appendChild(this._toast);
+        }
+        this._toast.text = detail.text;
+        this.async(this._toast.show.bind(this._toast), 1);
+      }      
 
     });
 
