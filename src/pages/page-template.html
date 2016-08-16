@@ -8,6 +8,8 @@ Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 -->
 <link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
 <link rel="import" href="../../bower_components/app-layout/app-drawer-layout/app-drawer-layout.html">
 <link rel="import" href="../../bower_components/app-layout/app-drawer/app-drawer.html">
 <link rel="import" href="../../bower_components/app-layout/app-scroll-effects/app-scroll-effects.html">
@@ -19,81 +21,137 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../../bower_components/paper-menu/paper-submenu.html">
 <link rel="import" href="../../bower_components/paper-item/paper-item.html">
 <link rel="import" href="../../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../../bower_components/iron-icons/hardware-icons.html">
+<link rel="import" href="../../bower_components/iron-icons/maps-icons.html">
+
+<link rel="import" href="../elements/data.html">
 
 <dom-module id="page-template">
 
   <template>
-
+    <style include="iron-flex iron-flex-alignment">
     <style>
 
-      :host {
-        display: block;
-        --app-primary-color: #4285f4;
-        --app-secondary-color: black;
+      :host{
+        background: #fff;
+        color:#212121;
       }
 
-      app-header {
-        background-color: var(--app-primary-color);
+      app-toolbar.side-toolbar {
+        background-color: var(--dark-primary-color);
         color: #fff;
+      }
+      app-toolbar.main-toolbar {
+        background-color: var(--default-primary-color);
+        color:#fff;
       }
       app-header paper-icon-button {
         --paper-icon-button-ink-color: white;
       }
 
-      .drawer-list {
-        margin: 0 20px;
-      }
-      .drawer-list a {
-        display: block;
-        padding: 0 16px;
-        line-height: 40px;
-        text-decoration: none;
-        color: var(--app-secondary-color);
-      }
-      .drawer-list a.iron-selected {
-        color: black;
-        font-weight: bold;
-      }
-      .drawer-list a.subroute {
-        padding-left: 32px;
+      paper-menu.sub-menu{
+        padding: 0;
       }
 
       paper-menu  a{
         display: block;
         text-decoration: none;
-        color: #464646;
+        color:#212121;;
         padding: 7px 15px;
-        padding-left: 12px;
-        /*display: table;*/
-        /*width: 100%;*/
-        white-space: nowrap;        
+        white-space: nowrap;
+        font-family: Roboto,Noto,sans-serif;
+        -webkit-font-smoothing:antialiased;
+        font-weight: 300;
+        line-height: 36px;
+
+
       }
        a > iron-icon{
-        padding:5px;
+        /*padding:5px;*/
+        margin-right:30px;
+        opacity: 0.54;
+        padding:6px 0;
       }
+
+      a.iron-selected, a:hover {
+        background: #dadbe8;
+        color:#3F51B5;
+        font-weight: 700;
+      }
+
+      a.menu-trigger.iron-selected{
+        background: #c8cae3;
+      }
+
+      iron-icon.control{
+        margin-right: 0;
+      }
+      .content-wrapper{
+        padding:15px;
+      }
+
+    /* user profile */
+
+    .profile {
+      padding: 10px 0px 10px 7px;
+      border-bottom: 1px solid #eee
+    }
+    .profile > img {
+      border-radius: 100%;
+      border: 2px solid #eeeeee;
+      width: 50px;
+      height: 50px;
+      float: left;
+    }
+
+    .profile > .personal{
+      margin-left: 25px;
+    }
+    .profile > .personal > h5{
+      margin: 0;
+      padding:5px 0;
+    }
     </style>
 
-
+    <app-data menu="{{menu}}"></app-data>
 
     <app-drawer-layout fullbleed>
 
       <!-- Drawer content -->
       <app-drawer>
         <app-toolbar class="side-toolbar">Menu</app-toolbar>
+        <div class="profile layout horizontal">
+          <img src="http://solutionportal.net/projects/materia/angular/images/admin.jpg" alt="admin">
+          <div class="personal flex">
+      			<h5 class="name">Robert Smith</h5>
+      			<small class="desig text-uppercase">UX Designer</small>
+      		</div>
+        </div>
         <paper-menu attr-for-selected="name" selected="[[page]]" role="navigation">
-          <a class="menu-trigger" href="#">
-            <iron-icon icon="menu"></iron-icon>  Dashboard
-          </a>
-          <paper-submenu>
-            <a class="menu-trigger" href="#">
-              <iron-icon icon="menu"></iron-icon>  Dashboard
-            </a>
-            <paper-menu attr-for-selected="name" class="menu-content" selected="[[page]]">
-              <a href="/dashboard" name$="[[page]]">Topic 1</a>
-              <a href="/view2">Topic 2</a>
-              <a href="/view3">Topic 3</a>
-            </paper-menu>
-          </paper-submenu>
+
+          <template is="dom-repeat" items="[[menu]]">
+            <template is="dom-if" if="[[item.subMenu]]">
+              <paper-submenu opened="[[_computeOpened(item.subMenu,page)]]">
+                <a class="menu-trigger layout horizontal" href="[[item.url]]" name="[[item.url]]">
+                  <iron-icon icon="[[item.icon]]"></iron-icon>
+                  <span class="flex">[[item.title]]</span>
+                  <iron-icon icon="[[_computeIconControl(item.subMenu,page)]]" class="control"></iron-icon>
+                </a>
+                <paper-menu attr-for-selected="name" class="menu-content sub-menu" selected="[[page]]">
+                  <template is="dom-repeat" items="[[item.subMenu]]">
+                      <a class="layout horizontal" href="[[item.url]]" name$="[[item.url]]">
+                        <iron-icon icon="[[item.icon]]"></iron-icon>  <span>[[item.title]]</span>
+                      </a>
+                  </template>
+                </paper-menu>
+              </paper-submenu>
+            </template>
+            <template is="dom-if" if="[[!item.subMenu]]">
+              <a class="layout horizontal" href="/[[item.url]]" name$="[[item.url]]">
+                <iron-icon icon="[[item.icon]]"></iron-icon>  <span>[[item.title]]</span>
+              </a>
+            </template>
+          </template>
         </paper-menu>
       </app-drawer>
 
@@ -106,6 +164,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             <div title>My App</div>
           </app-toolbar>
         </app-header>
+
         <div class="content-wrapper">
           <content select=".content">
 
@@ -135,10 +194,26 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       },
 
+      listeners:{
+        // 'paper-submenu-open': 'subMenuOpened'
+      },
+
       observers: [
         // '_routePageChanged(routeData.page)'
       ],
 
+      _computeOpened: function(items,page){
+        var find = items.filter(function(item){
+            return item.url === page;
+        });
+        return find.length > 0;
+      },
+
+      _computeIconControl: function(items,page){
+
+        return (this._computeOpened(items,page)) ? "hardware:keyboard-arrow-down" : "icons:chevron-left";
+
+      },
 
 
       ready: function() {

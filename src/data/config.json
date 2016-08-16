@@ -1,0 +1,90 @@
+{
+    "profile": [
+        {
+            "title": "View Profile",
+            "icon": "zmdi zmdi-account",
+            "url": "#"
+        },
+        {
+            "title": "Privacy Settings",
+            "icon": "zmdi zmdi-input-antenna",
+            "url": "#"
+        },
+        {
+            "title": "Settings",
+            "icon": "zmdi zmdi-settings",
+            "url": "#"
+        },
+        {
+            "title": "Logout",
+            "icon": "zmdi zmdi-time-restore",
+            "url": "#"
+        }
+    ],
+
+
+    "menu": [
+        {
+            "title": "Dashboard",
+            "icon": "dashboard",
+            "url": "dashboard",
+            "require":["log/read","agent/read","job/read"]
+        },
+        {
+            "title": "USER",
+            "icon": "account-circle",
+            "url": "#",
+            "require":["user/read","user_group/read"],
+            "subMenu": [
+                {
+                    "title": "Users",
+                    "icon": "perm-identity",
+                    "url": "users",
+                    "require":["user/read"]
+                },
+                {
+                    "title": "Groups",
+                    "icon": "supervisor-account",
+                    "url": "groups",
+                    "require":["user_group/read"]
+                }
+            ]
+        },
+        {
+            "title": "Resources",
+            "icon": "dns",
+            "url": "resources",
+            "require":["resource/read"]
+        },
+        {
+            "title": "Agent",
+            "icon": "settings-remote",
+            "url": "agents",
+            "require":["agent/read"]
+        },
+        {
+            "title": "Job",
+            "icon": "subject",
+            "url": "jobs",
+            "require":["job/read"]
+        },
+        {
+            "title": "Settings",
+            "icon": "settings",
+            "url": "/settings",
+            "require":["user/read"]
+        },
+        {
+            "title": "Profile",
+            "icon": "account-box",
+            "url": "profiles",
+            "require":["user/read"]
+        },
+        {
+            "title": "Logs",
+            "icon": "speaker-notes",
+            "url": "logs",
+            "require":["log/read"]
+        }
+    ]
+}
