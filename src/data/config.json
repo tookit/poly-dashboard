@@ -1,25 +1,11 @@
 {
     "profile": [
         {
-            "title": "View Profile",
-            "icon": "zmdi zmdi-account",
-            "url": "#"
-        },
-        {
-            "title": "Privacy Settings",
-            "icon": "zmdi zmdi-input-antenna",
-            "url": "#"
-        },
-        {
-            "title": "Settings",
-            "icon": "zmdi zmdi-settings",
-            "url": "#"
-        },
-        {
-            "title": "Logout",
-            "icon": "zmdi zmdi-time-restore",
-            "url": "#"
+            "name": "Michael Wang",
+            "img": "http://solutionportal.net/projects/materia/angular/images/admin.jpg",
+            "email": "wangqiangshen@gmail"
         }
+
     ],
 
 

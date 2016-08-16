@@ -30,11 +30,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <dom-module id="page-template">
 
   <template>
-    <style include="iron-flex iron-flex-alignment">
+    <style include="iron-flex iron-flex-alignment"></style>
     <style>
 
-
-      app-toolbar.side-toolbar {
+      h3.title{
+        margin-left: 25px;
+      }
+      app-toolbar.left-toolbar {
         background-color: var(--dark-primary-color);
         color: #fff;
       }
@@ -115,20 +117,52 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       padding:5px 0;
     }
 
+    /*breadcrumb*/
+    
+    ul.breadcrumb{
+      font-size: 14px;
+      font-weight: 300;
+      padding: 10px 15px;
+      margin-bottom: 21px;
+      margin-top:0;
+      list-style: none;
+      background-color: transparent;
+      border-radius: 2px;
+      text-transform: uppercase;
+    }
+
+    ul.breadcrumb li{
+      display: inline-block;
+    }
+    ul.breadcrumb li > a{
+      text-decoration: none;
+    }
+    ul.breadcrumb li > a:hover{
+      background: none;
+    }    
+    li.seperater{
+      padding: 0 5px;
+    }
+
+
+
     </style>
     <iron-media-query query="(min-width: 640px)" query-matches="{{largeScreen}}"></iron-media-query>
-    <app-data menu="{{menu}}"></app-data>
+    <app-data menu="{{menu}}" profile="{{profile}}"></app-data>
 
     <app-drawer-layout fullbleed id="drawerLayout">
 
       <!-- Drawer content -->
       <app-drawer id="leftDrawer">
-        <app-toolbar class="side-toolbar">Menu</app-toolbar>
+        <app-toolbar class="left-toolbar">
+          <iron-icon icon="icons:settings-input-antenna" class="logo"></iron-icon>
+          <h3 hidden$="[[narrowDrawer]]" class="title">Cronman</h3>
+        </app-toolbar>
         <div class="profile layout horizontal">
-          <img src="http://solutionportal.net/projects/materia/angular/images/admin.jpg" alt="admin">
+          <img src$="[[profile.0.img]]" alt="admin">
           <div class="personal flex" hidden$="[[narrowDrawer]]">
-      			<h5 class="name">Robert Smith</h5>
-      			<small class="desig text-uppercase">UX Designer</small>
+      			<h5 class="name">[[profile.0.name]]</h5>
+      			<small class="desig text-uppercase">[[profile.0.email]]</small>
       		</div>
         </div>
         <paper-menu attr-for-selected="name" selected="[[page]]" role="navigation">
@@ -171,6 +205,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         </app-header>
 
         <div class="content-wrapper">
+          <div class="page-breadcrumb">
+            <ul class="breadcrumb">
+              <li><a href="/dashboard">Home</a></li>
+              <li class="seperater"> > </li>
+              <li>[[page]]</li>
+            </ul>
+          </div>
           <content select=".content">
 
           </content>
