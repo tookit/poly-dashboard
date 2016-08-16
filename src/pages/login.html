@@ -61,8 +61,8 @@
         user: {
           type: Object,
           value: {
-            // username: 'test@test.com',
-            // password: '123456'
+            username: 'wangqiangshen@gmail.com',
+            password: '7493064'
           },
         }
       },
@@ -84,25 +84,14 @@
       },
 
       _handleFormResponse:function(e){
+        console.log(this.route);
         var json  = e.target.serialize();
         var token = e.detail.response;
         var _this = this;
-        this.fire('user',this.user.username);
-        this.fire('session', token);
-        router.go('/dashboard');
-        // if (!this._ajax) {
-        //   //get user scopes after login
-        //   this._ajax = document.createElement('iron-ajax');
-        //   this._ajax.headers = {'authorization':'token '+ token};
-        //   this._ajax.url = document.querySelector('#app').CONST.API_URL+"/profile";
-        //   this._ajax.verbose = true;
-        //   var req = this._ajax.generateRequest();
-        //   req.completes.then(function(e){
-        //      // this.fire('session',e.response.result);
-        //      window.localStorage.setItem('session_profile',JSON.stringify(e.response.result));
-        //      router.go('/dashboard');
-        //   });
-        // }
+        window.location.href="/dashboard";
+        // this.fire('session', token);
+        // this.set(this.route.path, "/dashboard"); 
+
       },
 
       ready: function(){
@@ -110,8 +99,7 @@
       },
 
       login: function(){
-          // this.$.form.action =  document.querySelector('#app').CONST.API_URL+"/login";
-          // this.$.form.headers = { "X-CRONMAN-AUTH-TYPE" : "local"};
+          this.$.form.action =  window.config.apiUrl+"/auth/login";
           this.$.form.submit();
       }
     });

@@ -23,8 +23,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   <script>
 
+    // SET GLOBAL CONFIG
+    window.config = {
+      'apiUrl': 'http://local.api.dev'
+    };
     // setup Polymer options
-    window.Polymer = {lazyRegister: true, dom: 'shadow'};
+    window.Polymer = {lazyRegister: true, dom: 'shadow','apiUrl':'http://local.api.dev'};
 
     // load webcomponents polyfills
     (function() {

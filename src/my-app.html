@@ -16,11 +16,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <dom-module id="my-app">
 
   <template>
-
-    <style>
-
-    </style>
-
     <app-location route="{{route}}"></app-location>
     <app-route
         route="{{route}}"
@@ -29,7 +24,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         tail="{{subroute}}"></app-route>
 
     <iron-pages role="main" selected="[[page]]" attr-for-selected="name">
-      <page-login name="login" page="[[page]]"></page-login>
+      <page-login name="login" page="[[page]]" route="[[route]]"></page-login>
       <page-dashboard name="dashboard" page="[[page]]"></page-dashboard>
       <page-resources name="resources" page="[[page]]"></page-resources>
       <page-users name="users" page="[[page]]"></page-users>
