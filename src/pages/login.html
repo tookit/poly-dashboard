@@ -7,6 +7,7 @@
 <link rel="import" href="../../bower_components/paper-button/paper-button.html">
 <link rel="import" href="../../bower_components/paper-material/paper-material.html">
 <dom-module id="page-login">
+  <template>
   <style>
     .container{
       height: 100vh;
@@ -29,19 +30,17 @@
       margin-bottom: 25px;
     }
   </style>
-  <template>
-
     <div class="container">
       <paper-material>
 
-      <h1 style="text-align:center">Cronman Admin</h1>
+      <h1>Cronman Admin</h1>
       <form is="iron-form" id="form" method="POST" content-type="application/json">
           <paper-input id="username" name="email" type="email" no-label-float label="Username" value="[[user.username]]"   required  error-message="Invalid username!"></paper-input>
           <paper-input no-label-float name="password" label="Password" type="password" value="[[user.password]]" required  error-message="Password require!" ></paper-input>
           <div class="layout horizontal center">
               <paper-checkbox class="remember-me"></paper-checkbox>
               <div class="remember-me-txt flex">Remember me</div>
-              <paper-button on-click="login" tabindex="0"  class="flex blue">Login</paper-button>
+              <paper-button on-click="login" class="flex blue">Login</paper-button>
          </div>
       </form>
     </paper-material>
