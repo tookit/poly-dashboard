@@ -16,6 +16,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <dom-module id="page-users">
   <style>
+    paper-material{
+      background: #fff;
+    }
   </style>
   <template>
     <app-route
@@ -64,7 +67,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               </paper-datatable>
             </section>
             <section name="form">
-              create user
+              create/update user {{action}}
             </section>
           </iron-pages>
         </paper-material>
