@@ -12,12 +12,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../../bower_components/iron-pages/iron-pages.html">
 <link rel="import" href="../../bower_components/app-route/app-route.html">
 <link rel="import" href="page-template.html">
+<link rel="import" href="users-form.html">
 <link rel="import" href="../elements/paper-datatable/paper-datatable.html">
 
 <dom-module id="page-users">
   <style>
     paper-material{
       background: #fff;
+      padding: 25px;
     }
   </style>
   <template>
@@ -67,7 +69,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               </paper-datatable>
             </section>
             <section name="form">
-              create/update user {{action}}
+              <page-users-form route="[[subroute]]"></page-users-form>
             </section>
           </iron-pages>
         </paper-material>
@@ -87,6 +89,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       properties: {
         route: Object,
+        action: String,  
         action: {
           type: String,
           reflectToAttribute: true,

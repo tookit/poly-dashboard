@@ -8,17 +8,34 @@ Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 -->
 <link rel="import" href="../../bower_components/polymer/polymer.html">
-<link rel="import" href="page-template.html">
+<link rel="import" href="../../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
 
 <dom-module id="page-users-form">
   <template>
-    <page-template page=[[page]]>
+    <div class="form-layout">
+      <!-- <h3>New User</h3> -->
+      <!-- edit  form  -->
+      <template is="dom-if" if="[[route.path]]">
+        <iron-ajax
+            id="ajax"
+            data-url="/users"
+            auto
+            url="http://local.api.dev/users/1"
+            handle-as="json"
+            last-response="{{response}}"
+            debounce-duration="300"></iron-ajax>      
+      </template>
+      <form is="iron-form" id="form" method="POST" data-url$="[[_computeUrl(route)]]">
+        <paper-input error-message="First name required!" name="first_name" label="First Name" value="[[response.data.name]]" required auto-validate></paper-input>
+        <paper-input error-message="Lastname required!" name="last_name" label="Last Name" value="[[response.data.name]]" required auto-validat ></paper-input>
+        <paper-input error-message="Invalid Email!" name="email" label="Email" type="email" value="[[response.data.email]]" required auto-validate ></paper-input>
+        <paper-input type="password" label="Password" type="password" name="password" value="" required auto-validate></paper-input>  
+        <br>
+        <input type="submit">
+      </form>      
+    </div>
 
-      <div class="content">
-        [[page]]
-      </div>
-
-    </page-template>
   </template>
   <script>
   (function() {
@@ -31,21 +48,27 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       ],
 
       properties: {
-        page: {
-          type: String,
-          reflectToAttribute: true,
-          // observer: '_pageChanged'
-        },
+        route: Object
       },
       listeners:{
+        'iron-form-presubmit': 'preSubmit'
+      },
+
+      preSubmit: function(e){
+        var action = window.config.apiUrl + e.target.$.form.getAttribute('data-url');
+        this.$.form.request.url = action;
+        this.$.form.request.method =  (this.route.path) ? 'PUT' : 'POST';
+        this.$.form.request.headers = {"content-type":"application/json"};
+        console.log(this.$.form.request.headers);
 
       },
 
-
+      _computeUrl: function(route){
+        return  (!route.path) ? "/users" : "/users"+route.path;
+      },
 
       ready: function(){
-        console.log(this.page);
-          // this.$.username.$.input.focus();
+
       }
 
     });

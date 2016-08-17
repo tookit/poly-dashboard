@@ -20,6 +20,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <style>
     paper-progress {
       --paper-progress-active-color: #e91e63;
+
     }
     </style>
     <template is="dom-if" if="{{loading}}">
@@ -88,6 +89,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       },
 
       _pageChanged: function(page) {
+        console.log('page changed');
         this.showProgress();
         // load page import on demand.
         this.importHref(
