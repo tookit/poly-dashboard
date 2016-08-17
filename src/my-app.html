@@ -11,11 +11,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/app-route/app-location.html">
 <link rel="import" href="../bower_components/app-route/app-route.html">
 <link rel="import" href="../bower_components/iron-pages/iron-pages.html">
+<link rel="import" href="../bower_components/paper-progress/paper-progress.html">
 <!-- <link rel="import" href="styles/theme.html"> -->
 
 <dom-module id="my-app">
 
   <template>
+    <style>
+    paper-progress {
+      --paper-progress-active-color: #e91e63;
+    }
+    </style>
+    <template is="dom-if" if="{{loading}}">
+      <paper-progress value="30" id="progress"  class="slow" style="width:100%;" ></paper-progress>
+    </template>
     <app-location route="{{route}}"></app-location>
     <app-route
         route="{{route}}"
@@ -27,6 +36,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <page-login name="login" page="[[page]]" route="[[route]]"></page-login>
       <page-dashboard name="dashboard" page="[[page]]"></page-dashboard>
       <page-resources name="resources" page="[[page]]"></page-resources>
+      <page-jobs name="jobs" page="[[page]]"></page-jobs>
       <page-users name="users" page="[[page]]"></page-users>
       <page-groups name="groups" page="[[page]]"></page-groups>
     </iron-pages>
@@ -45,6 +55,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           reflectToAttribute: true,
           observer: '_pageChanged'
         },
+
+        loading:{
+          type: Boolean,
+          value: true,
+          notify:true
+        }
 
       },
 
@@ -70,16 +86,24 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       },
 
       _pageChanged: function(page) {
+        this.showProgress();
         // load page import on demand.
-        this.updateTitle(page);
         this.importHref(
-          this.resolveUrl('pages/' + page + '.html'), null, null, true);
+          this.resolveUrl('pages/' + page + '.html'), function(){
+            console.log("Page " + page + ' Loaded');
+            this.loading = false;
+          }, null, true);
+          this.updateTitle(page);
       },
 
       updateTitle: function(page){
 
         var pageTitle = 'POLY - ' + page.toUpperCase();
         window.document.title = pageTitle;
+
+      },
+
+      showProgress: function(){
 
       },
 
@@ -90,7 +114,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         }
         this._toast.text = detail.text;
         this.async(this._toast.show.bind(this._toast), 1);
-      }      
+      }
 
     });
 

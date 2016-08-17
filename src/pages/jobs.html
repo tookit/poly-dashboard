@@ -12,14 +12,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="page-template.html">
 <link rel="import" href="../elements/paper-datatable/paper-datatable.html">
 
-<dom-module id="page-users">
+<dom-module id="page-jobs">
   <style>
+    paper-material {
+      background: #fff;
+    }
   </style>
   <template>
     <page-template page="[[page]]">
       <iron-ajax
           auto
-          url="../data/user.json"
+          url="../data/job.json"
           handle-as="json"
           last-response="{{data}}"
           debounce-duration="300"></iron-ajax>
@@ -27,15 +30,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <paper-material>
           <paper-datatable data="{{data.data}}" selectable  multi-selection id="table">
             <paper-datatable-column header="Name" property="name" type="String" align="right" sortable ></paper-datatable-column>
-            <paper-datatable-column header="Email" property="email" type="String" align="right" sortable></paper-datatable-column>
-            <paper-datatable-column header="Groups" property="group_membership" type="Array" align="right" sortable>
-              <template>
-                <template is="dom-repeat" items="[[value]]">
-                  <span class="label label-primary">[[item]]</span>
-                </template>
-              </template>
-            </paper-datatable-column>
-            <paper-datatable-column header="Status" property="active" type="String" align="right" sortable>
+            <paper-datatable-column header="Agent" property="agent_key" type="String" align="right" sortable></paper-datatable-column>
+            <paper-datatable-column header="Status" property="status" type="String" align="right" sortable>
               <template>
                 <span class$="[[_computeActiveClass(value)]]">[[value]]</span>
               </template>
@@ -43,7 +39,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             <!-- <paper-datatable-column header="Created" property="created_at" type="String" align="right"></paper-datatable-column> -->
             <paper-datatable-column header="Action" property="id" type="String" editable>
               <template>
-                <a href="#/users/edit/[[value]]" hidden$="[[!_hasScope('user/update')]]" ><iron-icon icon="create"></iron-icon></a>
+                <a href="/users/edit/[[value]]" hidden$="[[!_hasScope('user/update')]]" ><iron-icon icon="create"></iron-icon></a>
                 <a end-point="/user/[[value]]" is="app-delete" hidden$="[[!_hasScope('user/delete')]]"><iron-icon icon="delete"></iron-icon></a>
               </template>
             </paper-datatable-column>
@@ -58,7 +54,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     'use strict';
 
     Polymer({
-      is: 'page-users',
+      is: 'page-jobs',
 
       behaviors: [
       ],

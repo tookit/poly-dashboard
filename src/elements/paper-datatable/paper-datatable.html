@@ -598,10 +598,11 @@ Mixins
 
 				_queryAndSetColumns: function(){
 					var columns = this.queryAllEffectiveChildren('paper-datatable-column');
-					columns.forEach((column) => {
+					var _this = this;
+					columns.forEach(function(column){
 						if(!column.beenAttached.state.ready){
-							column.parentNodeRef = this;
-							this.async(function(){
+							column.parentNodeRef = _this;
+							_this.async(function(){
 								column._registerEvilFunctions();
 								column.beenAttached.ready();
 							});
