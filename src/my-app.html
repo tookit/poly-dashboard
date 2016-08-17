@@ -72,7 +72,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         'nav': 'handleNav',
         'page-meta': 'updateTitle',
         // 'session': 'updateSession',
-        'toast': 'showToast'
+        'toast': 'showToast',
+        'route': 'routeChanged'
 
       },
 
@@ -84,6 +85,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       },
 
+      routeChanged: function(e,route){
+          console.log(route.path.split('/'));
+          this.page = 'dashboard';
+      },
       _routePageChanged: function(page) {
         this.page = page || 'login';
       },

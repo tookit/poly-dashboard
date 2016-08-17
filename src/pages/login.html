@@ -63,6 +63,7 @@
             username: 'wangqiangshen@gmail.com',
             password: '7493064'
           },
+        route: Object  
         }
       },
       listeners:{
@@ -83,15 +84,15 @@
       },
 
       _handleFormResponse:function(e){
-        console.log(this.route);
-        var json  = e.target.serialize();
         var token = e.detail.response;
-        var _this = this;
-        window.location.href="/dashboard";
+        // redirect to another page
+        this.fire('route',this.route);
+        window.history.replaceState(null, null, 'dashboard');
         // this.fire('session', token);
         // this.set(this.route.path, "/dashboard"); 
 
       },
+
 
       ready: function(){
           // this.$.username.$.input.focus();
