@@ -25,7 +25,8 @@
     "iron-icons": "PolymerElements/iron-icons#^1.1.3",
     "paper-tooltip": "PolymerElements/paper-tooltip#^1.1.2",
     "whenever.js": "^0.0.2",
-    "paper-progress": "PolymerElements/paper-progress#^1.0.10"
+    "paper-progress": "PolymerElements/paper-progress#^1.0.10",
+    "vaadin-grid": "^1.1.1"
   },
   "devDependencies": {
     "web-component-tester": "^4.0.0"
