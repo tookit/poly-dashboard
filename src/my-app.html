@@ -11,23 +11,18 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/app-route/app-location.html">
 <link rel="import" href="../bower_components/app-route/app-route.html">
 <link rel="import" href="../bower_components/iron-pages/iron-pages.html">
-<link rel="import" href="../bower_components/paper-progress/paper-progress.html">
 <link rel="import" href="../bower_components/paper-toast/paper-toast.html">
+<link rel="import" href="../bower_components/paper-spinner/paper-spinner.html">
 <dom-module id="my-app">
 
   <template>
     <style>
-    paper-progress {
-      --paper-progress-active-color: #e91e63;
 
-    }
     :host{
       min-height: 101vh;
     }
     </style>
-    <template is="dom-if" if="{{loading}}">
-      <paper-progress value="30" id="progress"  class="slow" style="width:100%;" ></paper-progress>
-    </template>
+    <paper-spinner id="spinner" active></paper-spinner>
     <app-location route="{{route}}"></app-location>
     <app-route
         route="{{route}}"
@@ -44,12 +39,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <page-agents name="agents" page="[[page]]"></page-agents>
       <page-users name="users" page="[[page]]" route="[[subroute]]" id="users"></page-users>
       <page-groups name="groups" page="[[page]]"></page-groups>
+      <page-404 name="404" page="[[page]]"></page-404>
     </iron-pages>
     <paper-toast id="toast" always-on-top horizontal-align="right"></paper-toast>
 
   </template>
 
   <script>
+  (function() {
+    'use strict';
 
     Polymer({
 
@@ -63,9 +61,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           observer: '_pageChanged'
         },
 
-        loading:{
+        pageLoaded:{
           type: Boolean,
-          value: true,
+          value: false,
           notify:true
         }
 
@@ -99,13 +97,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       _pageChanged: function(page) {
         console.log('page changed');
-        this.showProgress();
         // load page import on demand.
         this.importHref(
-          this.resolveUrl('pages/' + page + '.html'), function(){
+          this.resolveUrl('pages/' + page + '.html'),
+          function(e){
             console.log("Page " + page + ' Loaded');
-            this.loading = false;
-          }, null, true);
+            this.$.spinner.active = false;
+          },
+          function(e){
+            console.log(e.target.href+" Missing");
+          }, true);
           this.updateTitle(page);
       },
 
@@ -116,9 +117,28 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       },
 
-      showProgress: function(){
-
-      },
+      // showProgress: function(){
+      //   // this.$.progress.value = this.$.progress.min;
+      //   if (this.animating === false) {
+      //     this.nextProgress();
+      //   }
+      // },
+      //
+      // stopPregress: function(){
+      //   cancelAnimationFrame(this.nextProgress.bind(this));
+      // },
+      //
+      // nextProgress: function(){
+      //   this.animating = true;
+      //   if (this.$.progress.value < this.$.progress.max) {
+      //     this.$.progress.value += (this.$.progress.step || 1);
+      //   } else {
+      //     return;
+      //     // this.$.progress.value = this.$.progress.min;
+      //   }
+      //   requestAnimationFrame(this.nextProgress.bind(this));
+      //
+      // },
 
       updateSession: function(e,detail){
         window.localStorage.setItem('token',detail.token);
@@ -137,7 +157,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
 
     });
-
+  })();
   </script>
 
 </dom-module>

@@ -73,9 +73,9 @@
       },
 
 
-      _handleError: function(event){
-        var detail = event.detail.request.xhr.response;
-        this.fire('toast', {text: "Login Error -  " + detail});
+      _handleError: function(e){
+        console.log(e);
+        this.fire('toast', e.detail.request.response.error.message);
       },
 
       _preSubmit:function(event)

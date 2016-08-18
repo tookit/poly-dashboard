@@ -19,7 +19,7 @@
         {
             "title": "USER",
             "icon": "account-circle",
-            "url": "#",
+            "url": "users",
             "require":["user/read","user_group/read"],
             "subMenu": [
                 {

@@ -172,14 +172,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <template is="dom-repeat" items="[[menu]]">
             <template is="dom-if" if="[[item.subMenu]]">
               <paper-submenu opened="[[_computeOpened(item.subMenu,page)]]">
-                <a class="menu-trigger layout horizontal" href="[[item.url]]" name="[[item.url]]">
+                <a class="menu-trigger layout horizontal" href="/[[item.url]]" name="[[item.url]]">
                   <iron-icon icon="[[item.icon]]"></iron-icon>
                   <span class="flex" hidden$="[[narrowDrawer]]">[[item.title]]</span>
                   <iron-icon icon="[[_computeIconControl(item.subMenu,page)]]" class="control" hidden$="[[narrowDrawer]]"></iron-icon>
                 </a>
                 <paper-menu attr-for-selected="name" class="menu-content sub-menu" selected="[[page]]">
                   <template is="dom-repeat" items="[[item.subMenu]]">
-                      <a class="layout horizontal" href="[[item.url]]" name$="[[item.url]]">
+                      <a class="layout horizontal" href="/[[item.url]]" name$="[[item.url]]">
                         <iron-icon icon="[[item.icon]]"></iron-icon>
                         <span hidden$="[[narrowDrawer]]">[[item.title]]</span>
                       </a>

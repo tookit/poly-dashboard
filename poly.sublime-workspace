@@ -4,12 +4,24 @@
 		"selected_items":
 		[
 			[
-				"pids",
-				"__pids_pidof"
+				"d",
+				"dashboard"
+			],
+			[
+				"rout",
+				"route.path"
+			],
+			[
+				"iron",
+				"ironFormPresubmit"
 			],
 			[
 				"min",
-				"min-width"
+				"min-height"
+			],
+			[
+				"pids",
+				"__pids_pidof"
 			],
 			[
 				"_co",
@@ -291,6 +303,73 @@
 	},
 	"buffers":
 	[
+		{
+			"file": "src/pages/page-template.html",
+			"settings":
+			{
+				"buffer_size": 9315,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/pages/login.html",
+			"settings":
+			{
+				"buffer_size": 3259,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/my-app.html",
+			"settings":
+			{
+				"buffer_size": 4224,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "Package Control Messages\n========================\n\nMaterial Theme\n--------------\n\n  #### Material Theme for Sublime Text 3\n  \n  ## Version 3.1.10\n  \n  ☢️ **************************************************************\n      After update, and before open a new \"already-closed\" issue run:\n      **\"Package Control: Satisfy Dependencies\"**\n  ☢️ **************************************************************\n  \n  📣 BUGFIXES:\n    - configurator when it's running right after installation ([ad8d345](https://github.com/equinusocio/material-theme/commit/ad8d345))\n    - Fix schemes with new mdpopups ([2babeb7](https://github.com/equinusocio/material-theme/commit/2babeb7))\n    - improve markdown highlighting ([d96c70a](https://github.com/equinusocio/material-theme/commit/d96c70a))\n    - popup styling in ST < 3119 ([66586db](https://github.com/equinusocio/material-theme/commit/66586db))\n    - R file type icon ([5e2ee0d](https://github.com/equinusocio/material-theme/commit/5e2ee0d))\n    - update configurator styles to support the latest mdpopups ([ac03484](https://github.com/equinusocio/material-theme/commit/ac03484))\n  \n  \n  ********************************************************************************\n  \n  ** Check the official changelog ( https://github.com/equinusocio/material-theme/blob/master/CHANGELOG.md  ) **\n",
+			"settings":
+			{
+				"buffer_size": 1325,
+				"line_ending": "Unix",
+				"name": "Package Control Messages",
+				"read_only": true,
+				"scratch": true
+			}
+		},
+		{
+			"file": "bower_components/app-route/demo/index.html",
+			"settings":
+			{
+				"buffer_size": 5844,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "index.html",
+			"settings":
+			{
+				"buffer_size": 2323,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/pages/users.html",
+			"settings":
+			{
+				"buffer_size": 4720,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/pages/users-form.html",
+			"settings":
+			{
+				"buffer_size": 2977,
+				"line_ending": "Unix"
+			}
+		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -353,13 +432,37 @@
 	},
 	"expanded_folders":
 	[
-		"/Users/michaelwang/Project/poly-dashboard",
-		"/Users/michaelwang/Project/paper-dashboard/app",
-		"/Users/michaelwang/Project/paper-dashboard/app/elements",
-		"/Users/michaelwang/Project/paper-dashboard/app/elements/app-template"
+		"/Users/michaelwang/Project/poly-dashboard/bower_components",
+		"/Users/michaelwang/Project/poly-dashboard/bower_components/app-route",
+		"/Users/michaelwang/Project/poly-dashboard/bower_components/app-route/demo",
+		"/Users/michaelwang/Project/poly-dashboard/bower_components/app-route/demo/youtube-demo",
+		"/Users/michaelwang/Project/poly-dashboard/bower_components/iron-validatable-behavior",
+		"/Users/michaelwang/Project/poly-dashboard/src",
+		"/Users/michaelwang/Project/poly-dashboard/src/elements",
+		"/Users/michaelwang/Project/poly-dashboard/src/elements/behaviors",
+		"/Users/michaelwang/Project/poly-dashboard/src/pages",
+		"/Users/michaelwang/Project/paper/app"
 	],
 	"file_history":
 	[
+		"/Users/michaelwang/Project/poly-dashboard/src/elements/behaviors/request-behaviors.html",
+		"/Users/michaelwang/Project/poly-dashboard/bower_components/iron-form/iron-form.html",
+		"/Users/michaelwang/Project/poly-dashboard/src/my-app.html",
+		"/Users/michaelwang/Project/paper-dashboard/app/elements/app-shell/app-shell.html",
+		"/Users/michaelwang/Project/poly-dashboard/index.html",
+		"/Users/michaelwang/Project/poly-dashboard/src/pages/groups.html",
+		"/Users/michaelwang/Project/poly-dashboard/src/pages/resources.html",
+		"/Users/michaelwang/Project/poly-dashboard/src/pages/users.html",
+		"/Users/michaelwang/Project/poly-dashboard/src/elements/paper-datatable/paper-datatable-column.html",
+		"/Users/michaelwang/Project/poly-dashboard/src/elements/paper-datatable/paper-datatable-edit-dialog.html",
+		"/Users/michaelwang/Project/poly-dashboard/src/elements/paper-datatable/paper-datatable.html",
+		"/Users/michaelwang/Project/poly-dashboard/src/elements/paper-datatable/paper-datatable-card.html",
+		"/Users/michaelwang/Project/paper-dashboard/app/index.html",
+		"/Users/michaelwang/Project/poly-dashboard/polymer.json",
+		"/Users/michaelwang/Project/poly-dashboard/src/pages/page-template.html",
+		"/Users/michaelwang/Project/poly-dashboard/src/pages/login.html",
+		"/Users/michaelwang/Project/poly-dashboard/src/data/config.json",
+		"/Users/michaelwang/Project/paper-dashboard/app/elements/app-sidebar/app-sidebar.html",
 		"/Users/michaelwang/Project/cronman-api/Vagrantfile",
 		"/Users/michaelwang/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings",
 		"/Users/michaelwang/Library/Application Support/Sublime Text 3/Packages/Default/Preferences.sublime-settings",
@@ -469,29 +572,11 @@
 		"/Users/michaelwang/project/paper/app/elements/pages/page-title.html",
 		"/Users/michaelwang/project/paper/app/elements/pages/page-typo.html",
 		"/Users/michaelwang/project/paper/app/elements/app-search/app-search.html",
-		"/Users/michaelwang/project/paper/app/elements/pages/page-charts.html",
-		"/Users/michaelwang/project/paper/app/elements/app-shell/app-shell.old.html",
-		"/Users/michaelwang/project/paper/app/elements/app-chart/app-chart.html",
-		"/Users/michaelwang/project/paper/app/elements/app-grid/app-grid.html",
-		"/Users/michaelwang/project/paper/app/elements/app-grid/iron-grid.html",
-		"/Users/michaelwang/project/paper/app/styles/app-theme.html",
-		"/Users/michaelwang/project/paper/bower_components/paper-styles/typography.html",
-		"/Users/michaelwang/project/paper/bower_components/paper-styles/paper-styles.html",
-		"/Users/michaelwang/project/paper/bower_components/Sortable/Sortable.html",
-		"/Users/michaelwang/project/paper/bower_components/paper-card/paper-card.html",
-		"/Users/michaelwang/project/paper/bower_components/vaadin-date-picker/vaadin-date-picker.html",
-		"/Users/michaelwang/project/paper/app/elements/paper-datatable/paper-datatable.html",
-		"/Users/michaelwang/project/paper/app/elements/paper-datatable/paper-datatable-edit-dialog.html",
-		"/Users/michaelwang/project/paper/app/elements/paper-datatable/paper-datatable-column.html",
-		"/Users/michaelwang/project/paper/bower.json",
-		"/Users/michaelwang/project/paper/app/elements/app-combo-box/app-combo-box-bak.html",
-		"/Users/michaelwang/project/paper/bower_components/iron-list/iron-list.html",
-		"/Users/michaelwang/project/paper/app/elements/paper-select/paper-select.html",
-		"/Users/michaelwang/project/paper/app/elements/paper-select/paper-select.js"
+		"/Users/michaelwang/project/paper/app/elements/pages/page-charts.html"
 	],
 	"find":
 	{
-		"height": 28.0
+		"height": 70.0
 	},
 	"find_in_files":
 	{
@@ -508,6 +593,14 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			";\n",
+			"users-form",
+			"\">\n",
+			"../../",
+			"../",
+			"paper-item",
+			"paper",
+			"paper-item",
 			"_health_check",
 			"HEALTHY_CODE",
 			"pidofproc",
@@ -627,15 +720,7 @@
 			"white-text",
 			"td",
 			"150",
-			"\">",
-			"招商银行利用青云的云软件搭建了一个用于测试的私有云，而中国银行则利用青云的云解决方案构建了一个服务于内部各部门的类似公有云的服务平台。通过与青云的合作，两家银行都基于云实现了灵活、高效的资源调度和管理。",
-			">                ",
-			"pres",
-			"press",
-			"pagination",
-			";\n",
-			">\n",
-			"th"
+			"\">"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -643,6 +728,7 @@
 		"regex": false,
 		"replace_history":
 		[
+			"../../../",
 			"/",
 			"",
 			"../../../bower_components/",
@@ -663,8 +749,263 @@
 	"groups":
 	[
 		{
+			"selected": 7,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "src/pages/page-template.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 9315,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2167,
+								2167
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"color_scheme": "Packages/Material Theme/schemes/Material-Theme.tmTheme",
+							"syntax": "Packages/HTML/HTML.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1187.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "src/pages/login.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3259,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2952,
+								2952
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"color_scheme": "Packages/Material Theme/schemes/Material-Theme.tmTheme",
+							"syntax": "Packages/HTML/HTML.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1252.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "src/my-app.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4224,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1846,
+								1846
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"color_scheme": "Packages/Material Theme/schemes/Material-Theme.tmTheme",
+							"syntax": "Packages/HTML/HTML.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 419.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1325,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1325,
+								1325
+							]
+						],
+						"settings":
+						{
+							"auto_indent": false,
+							"default_dir": "/Users/michaelwang/Project/cronman-scheduler",
+							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"tab_width": 2,
+							"word_wrap": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "bower_components/app-route/demo/index.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5844,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2578,
+								2497
+							]
+						],
+						"settings":
+						{
+							"color_scheme": "Packages/Material Theme/schemes/Material-Theme.tmTheme",
+							"syntax": "Packages/HTML/HTML.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1511.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "index.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2323,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1082,
+								1082
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"color_scheme": "Packages/Material Theme/schemes/Material-Theme.tmTheme",
+							"syntax": "Packages/HTML/HTML.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 337.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "src/pages/users.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4720,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3651,
+								3651
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"color_scheme": "Packages/Material Theme/schemes/Material-Theme.tmTheme",
+							"syntax": "Packages/HTML/HTML.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 336.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "src/pages/users-form.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2977,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1294,
+								1294
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"color_scheme": "Packages/Material Theme/schemes/Material-Theme.tmTheme",
+							"syntax": "Packages/HTML/HTML.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
 			]
 		}
 	],
@@ -711,7 +1052,7 @@
 	"project": "poly.sublime-project",
 	"replace":
 	{
-		"height": 52.0
+		"height": 114.0
 	},
 	"save_all_on_build": true,
 	"select_file":
@@ -720,6 +1061,18 @@
 		"last_filter": "",
 		"selected_items":
 		[
+			[
+				"iron-form",
+				"poly-dashboard/bower_components/iron-form/iron-form.html"
+			],
+			[
+				"app-shell",
+				"paper-dashboard/app/elements/app-shell/app-shell.html"
+			],
+			[
+				"app-side",
+				"paper-dashboard/app/elements/app-sidebar/app-sidebar.html"
+			],
 			[
 				"home",
 				"cloud/pages/home.htm"
@@ -731,10 +1084,6 @@
 			[
 				"page-log",
 				"paper/app/elements/pages/page-logs.html"
-			],
-			[
-				"app-shell",
-				"paper/app/elements/app-shell/app-shell.html"
 			],
 			[
 				"paper-da",
@@ -1013,10 +1362,6 @@
 				"paper/app/elements/app-session/app-session.html"
 			],
 			[
-				"app-side",
-				"paper/app/elements/app-sidebar/app-sidebar.html"
-			],
-			[
 				"iron-dro",
 				"paper/bower_components/iron-dropdown/iron-dropdown.html"
 			],
@@ -1143,10 +1488,6 @@
 			[
 				"paper-se",
 				"paper-dashboard/bower_components/paper-select/paper-select.html"
-			],
-			[
-				"iron-form",
-				"paper-dashboard/bower_components/iron-form-element-behavior/iron-form-element-behavior.html"
 			],
 			[
 				"iron-page-",
