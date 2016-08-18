@@ -6,7 +6,9 @@
 <link rel="import" href="../../bower_components/paper-checkbox/paper-checkbox.html">
 <link rel="import" href="../../bower_components/paper-button/paper-button.html">
 <link rel="import" href="../../bower_components/paper-material/paper-material.html">
-<dom-module id="page-login">
+<link rel="import" href="../elements/paper-stepper/paper-stepper.html">
+<link rel="import" href="../elements/paper-stepper/paper-step.html">
+<dom-module id="page-step">
   <template>
   <style>
     .container{
@@ -44,6 +46,14 @@
          </div>
       </form>
     </paper-material>
+    <paper-stepper>
+      <paper-step label="Choose Region" summarize="Summarize if needed">
+        <paper-input autoValidate></paper-input>
+      </paper-step>
+      <paper-step label="Choose AMI" summarize="Summarize if needed">
+        <div>"aaa"</div>
+      </paper-step>
+    </paper-stepper>
     </div>
   </template>
   <script>
@@ -51,7 +61,7 @@
     'use strict';
 
     Polymer({
-      is: 'page-login',
+      is: 'page-step',
 
       behaviors: [
       ],
@@ -85,10 +95,10 @@
 
       _handleFormResponse:function(e){
         var token = e.detail.response;
-        this.fire('session', token);
         // redirect to another page
         this.fire('route',this.route);
         window.history.replaceState(null, null, 'dashboard');
+        // this.fire('session', token);
         // this.set(this.route.path, "/dashboard");
 
       },

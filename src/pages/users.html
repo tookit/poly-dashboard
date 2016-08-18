@@ -14,6 +14,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="page-template.html">
 <link rel="import" href="users-form.html">
 <link rel="import" href="../elements/paper-datatable/paper-datatable.html">
+<link rel="import" href="../elements/behaviors/ajax-request-behaviors.html">
 
 <dom-module id="page-users">
   <style>
@@ -39,8 +40,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <iron-pages role="sub" selected="[[_computeIronPages(route,subroute)]]" attr-for-selected="name">
             <section name="list">
               <iron-ajax
+                  id="ajax"
                   auto
-                  url="../data/user.json"
+                  headers="[[_buildHeader('auth')]]"
+                  url="[[_buildUrl('/users')]]"
                   handle-as="json"
                   last-response="{{data}}"
                   debounce-duration="300"></iron-ajax>
@@ -62,8 +65,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 <!-- <paper-datatable-column header="Created" property="created_at" type="String" align="right"></paper-datatable-column> -->
                 <paper-datatable-column header="Action" property="id" type="String" editable>
                   <template>
-                    <a href="#/users/edit/[[value]]" hidden$="[[!_hasScope('user/update')]]" ><iron-icon icon="create"></iron-icon></a>
-                    <a end-point="/user/[[value]]" is="app-delete" hidden$="[[!_hasScope('user/delete')]]"><iron-icon icon="delete"></iron-icon></a>
+                    <a href="/users/edit/[[value]]"><iron-icon icon="create"></iron-icon></a>
+                    <a end-point="/user/[[value]]"><iron-icon icon="delete"></iron-icon></a>
                   </template>
                 </paper-datatable-column>
               </paper-datatable>
@@ -85,11 +88,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       is: 'page-users',
 
       behaviors: [
+        ESG.AjaxRequestBehaviors
       ],
 
       properties: {
         route: Object,
-        action: String,  
+        action: String,
         action: {
           type: String,
           reflectToAttribute: true,
@@ -107,20 +111,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       },
 
-
-
       ready: function(){
           // this.$.username.$.input.focus();
       },
 
       _computeIronPages: function(route,subrouteData){
-        console.log(route,subrouteData);
         return (route.path === '/create' || route.path.match(/^\/edit\/[\d]+$/gi) !== null ) ? 'form' : 'list';
-        // if(routeData.action !== 'action'){
-        //   return 'users';
-        // }else{
-        //   return 'create';
-        // }
       },
 
       _computeActiveClass: function(value){

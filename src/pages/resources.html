@@ -8,14 +8,59 @@ Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 -->
 <link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="../../bower_components/iron-pages/iron-pages.html">
+<link rel="import" href="../../bower_components/app-route/app-route.html">
 <link rel="import" href="page-template.html">
+<link rel="import" href="resources-form.html">
+<link rel="import" href="../elements/paper-datatable/paper-datatable.html">
 
 <dom-module id="page-resources">
+  <style>
+    paper-material{
+      background: #fff;
+      padding: 25px;
+    }
+  </style>
   <template>
-    <page-template page=[[page]]>
-  
+    <app-route
+        route="{{route}}"
+        pattern="/:action"
+        data="{{routeData}}"
+        tail="{{subroute}}"></app-route>
+        <app-route
+            route="{{subroute}}"
+            pattern="/:id"
+            data="{{subrouteData}}">
+        </app-route>
+    <page-template page="[[page]]">
       <div class="content">
-        [[page]]
+        <paper-material>
+          <iron-pages role="sub" selected="[[_computeIronPages(route,subroute)]]" attr-for-selected="name">
+            <section name="list">
+              <iron-ajax
+                  auto
+                  <!-- url="../data/job.json" -->
+                  handle-as="json"
+                  last-response="{{data}}"
+                  debounce-duration="300"></iron-ajax>
+              <paper-datatable data="{{data.data}}" selectable  multi-selection id="table">
+                <paper-datatable-column header="Name" property="name" type="String" align="right" sortable ></paper-datatable-column>
+                <paper-datatable-column header="Region" property="region_code" type="String" align="right" sortable></paper-datatable-column>
+                <!-- <paper-datatable-column header="Created" property="created_at" type="String" align="right"></paper-datatable-column> -->
+                <paper-datatable-column header="Action" property="id" type="String" editable>
+                  <template>
+                    <a href="#/users/edit/[[value]]" ><iron-icon icon="create"></iron-icon></a>
+                    <a end-point="/user/[[value]]" is="app-delete"><iron-icon icon="delete"></iron-icon></a>
+                  </template>
+                </paper-datatable-column>
+              </paper-datatable>
+            </section>
+            <section name="form">
+              <page-resources-form route="[[subroute]]"></page-resources-form>
+            </section>
+          </iron-pages>
+        </paper-material>
       </div>
 
     </page-template>
@@ -31,22 +76,44 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       ],
 
       properties: {
+        route: Object,
+        action: String,
+        action: {
+          type: String,
+          reflectToAttribute: true,
+          // observer: '_pageChanged'
+        },
+
         page: {
           type: String,
           reflectToAttribute: true,
           // observer: '_pageChanged'
         },
+
       },
       listeners:{
 
       },
 
-
-
       ready: function(){
-        console.log(this.page);
+        console.log('resources page');
           // this.$.username.$.input.focus();
+      },
+
+      _computeIronPages: function(route,subrouteData){
+        console.log(route,subrouteData);
+        return (route.path === '/create' || route.path.match(/^\/edit\/[\d]+$/gi) !== null ) ? 'form' : 'list';
+        // if(routeData.action !== 'action'){
+        //   return 'users';
+        // }else{
+        //   return 'create';
+        // }
+      },
+
+      _computeActiveClass: function(value){
+
       }
+
 
     });
   })();

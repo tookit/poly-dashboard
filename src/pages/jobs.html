@@ -22,7 +22,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <page-template page="[[page]]">
       <iron-ajax
           auto
-          url="../data/job.json"
+          url="http://local.api.dev/jobs"
           handle-as="json"
           last-response="{{data}}"
           debounce-duration="300"></iron-ajax>

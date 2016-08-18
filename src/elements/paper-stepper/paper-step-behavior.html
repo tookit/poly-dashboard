@@ -1,0 +1,86 @@
+<link rel="import" href="../../../bower_components/polymer/polymer.html">
+
+<script>
+
+  window.Zecat = window.Zecat || {};
+  /*
+@polymerBehavior Zecat.PaperStepBehavior
+*/
+  Zecat.PaperStepBehavior = {
+      properties: {
+         completed: {
+          type: Boolean,
+          value: false,
+          reflectToAttribute: true
+        },
+        continueText: {
+          type: String,
+          value: 'CONTINUE'
+        },
+        skipText: {
+          type: String,
+          value: 'SKIP'
+        },
+        editable: {
+          type: Boolean,
+          value: false
+        },
+        index: Number,
+        linearStepper: {
+          type: Boolean,
+          value: false
+        },
+        previousCompleted: {
+          type: Boolean,
+          value: false
+        },
+        optional: {
+          type: Boolean,
+          value: false
+        },
+        selectable: {
+          type: Boolean,
+          computed: '_computeSelectable(linearStepper, completed, editable, previousCompleted)',
+          reflectToAttribute: true
+        },
+        label: {
+          type: String,
+          value: ''
+        },
+        opened: {
+          type: Boolean,
+          value: false,
+          reflectToAttribute: true
+        },
+        icon: {
+          type: String,
+          computed: '_computeIcon(completed, editable)'
+        }
+      },
+
+      observers: [
+        '_notifyProgress(completed, previousCompleted)'
+      ],
+
+      _computeSelectable: function(linearStepper, completed, editable, previousCompleted) {
+        return (!linearStepper || previousCompleted) && (!completed || editable);
+      },
+      _notifyProgress: function(completed, previousCompleted) {
+        if (completed && previousCompleted) {
+          this.fire('progress', this.index);
+        }
+      },
+      _stepLabelTapped: function() {
+        if (this.selectable) {
+          this.fire('select-step');
+        }
+      },
+      _computeIcon: function(completed, editable) {
+        return completed ? ( editable ? 'editor:mode-edit' : 'done' ) : '';
+      },
+      _computeIsIconBadge: function(icon) {
+        return icon.length > 0;
+      }
+  };
+
+</script>

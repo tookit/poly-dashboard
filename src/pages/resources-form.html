@@ -11,9 +11,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../../bower_components/iron-form/iron-form.html">
 <link rel="import" href="../../bower_components/paper-input/paper-input.html">
 <link rel="import" href="../../bower_components/paper-button/paper-button.html">
-<link rel="import" href="../elements/behaviors/ajax-request-behaviors.html">
+<link rel="import" href="../../bower_components/iron-pages/iron-pages.html">
 
-<dom-module id="page-users-form">
+<dom-module id="page-resources-form">
   <template>
     <div class="form-layout">
       <!-- <h3>New User</h3> -->
@@ -21,21 +21,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <template is="dom-if" if="[[route.path]]">
         <iron-ajax
             id="ajax"
+            data-url="/users"
             auto
-            headers="[[_buildHeader('auth')]]"
-            url="[[_buildUrl('/users')]][[route.path]]"
+            url="http://local.api.dev/users/1"
             handle-as="json"
             last-response="{{response}}"
-            ></iron-ajax>
+            debounce-duration="300"></iron-ajax>
       </template>
-      <form is="iron-form" id="form" method="POST" data-url$="[[_computeUrl(route)]]">
-        <paper-input error-message="First name required!" name="first_name" label="First Name" value="[[response.data.name]]" required auto-validate></paper-input>
-        <paper-input error-message="Lastname required!" name="last_name" label="Last Name" value="[[response.data.name]]" required auto-validat ></paper-input>
-        <paper-input error-message="Invalid Email!" name="email" label="Email" type="email" value="[[response.data.email]]" required auto-validate ></paper-input>
-        <paper-input type="password" label="Password" type="password" name="password" value="" required auto-validate></paper-input>
-        <br>
-        <input type="submit">
-      </form>
+      <div>
+        <iron-pages selected="0">
+          <div><paper-input label="Test input in iron pages"></paper-input></div>
+          <div>Two</div>
+          <div>Three</div>
+        </iron-pages>
+      </div>
     </div>
 
   </template>
@@ -44,10 +43,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     'use strict';
 
     Polymer({
-      is: 'page-users-form',
+      is: 'page-resources-form',
 
       behaviors: [
-        ESG.AjaxRequestBehaviors
       ],
 
       properties: {

@@ -1,0 +1,62 @@
+<link rel="import" href="../../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../../bower_components/iron-validatable-behavior/iron-validatable-behavior.html">
+<link rel="import" href="../../../bower_components/iron-flex-layout/iron-flex-layout.html">
+
+<!--
+@element paper-step
+@demo demo/index.html
+@hero hero.svg
+-->
+<dom-module id="paper-step">
+  <template>
+    <style>
+      :host {
+        display: block;
+        box-sizing: border-box;
+        @apply(--layout-scroll);
+      }
+    </style>
+    <content></content>
+  </template>
+
+<script>
+  Polymer({
+
+    is: 'paper-step',
+
+    behaviors: [
+      Polymer.IronValidatableBehavior
+    ],
+
+    properties: {
+      editable: {
+        type: Boolean,
+        value: false,
+        reflectToAttribute: true,
+        notify: true
+      },
+      label: {
+        type: String,
+        value: '',
+        notify: true
+      },
+      optional: {
+        type: Boolean,
+        value: false,
+        notify: true
+      },
+      opened: {
+        type: Boolean,
+        readOnly: true
+      }
+    },
+    skip: function() {
+      this.fire('skip-step');
+    },
+    continue: function() {
+      this.fire('continue-step');
+    }
+  });
+
+</script>
+</dom-module>
