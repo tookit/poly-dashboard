@@ -8,14 +8,6 @@
         "permissionList": "/permissions"
     },
 
-    "list":{
-      "user":{
-        "fields":[
-
-        ],
-      }
-    },
-
     "profile": [
         {
             "name": "Michael Wang",

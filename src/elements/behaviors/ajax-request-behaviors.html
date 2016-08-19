@@ -37,6 +37,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     },
 
     _buildAPIUrl: function(base,path,append = 0){
+      console.log(base,path);
       return (append === 0) ? base + path : base + path + append;
     },
 
@@ -45,6 +46,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     },
 
     onError: function(e){
+      console.log(e);
       var errorMsg;
       var status = e.detail.request.status;
       if(status === 400){
@@ -54,7 +56,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       if(status = 401){
         errorMsg = e.detail.request.response.error.message;
       }
-      console.log(errorMsg);
       this.fire('toast',errorMsg);
     }
 

@@ -47,7 +47,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                   url="[[_buildAPIUrl(config.api.base,config.api.userList)]]"
                   handle-as="json"
                   last-response="{{data}}"
-                  debounce-duration="300"></iron-ajax>
+                  ></iron-ajax>
               <paper-datatable data="{{data.data}}" selectable  multi-selection id="table">
                 <paper-datatable-column header="Name" property="name" type="String" align="right" sortable ></paper-datatable-column>
                 <paper-datatable-column header="Email" property="email" type="String" align="right" sortable></paper-datatable-column>

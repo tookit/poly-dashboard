@@ -50,9 +50,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                   debounce-duration="300"></iron-ajax>
               <paper-datatable data="{{data.data}}" selectable  multi-selection id="table">
                 <paper-datatable-column header="Name" property="name" type="String" sortable ></paper-datatable-column>
-                <paper-datatable-column header="Email" property="email" type="String"  sortable></paper-datatable-column>
                 <paper-datatable-column header="Description" property="description" type="String" sortable></paper-datatable-column>
-
                 <!-- <paper-datatable-column header="Created" property="created_at" type="String" align="right"></paper-datatable-column> -->
                 <paper-datatable-column header="Action" property="id" type="String" editable>
                   <template>
