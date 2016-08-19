@@ -13,6 +13,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/iron-pages/iron-pages.html">
 <link rel="import" href="../bower_components/paper-toast/paper-toast.html">
 <link rel="import" href="../bower_components/paper-spinner/paper-spinner.html">
+
+<!-- global configuration   -->
+<link rel="import" href="./elements/data.html">
+
 <dom-module id="my-app">
 
   <template>
@@ -22,6 +26,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       min-height: 101vh;
     }
     </style>
+    <app-data menu="{{menu}}" profile="{{profile}}" config="{{config}}"></app-data>
     <paper-spinner id="spinner" active></paper-spinner>
     <app-location route="{{route}}"></app-location>
     <app-route
@@ -32,13 +37,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <page-step name="test" page="[[page]]" route="[[route]]"></page-step>
 
     <iron-pages role="main" selected="[[page]]" attr-for-selected="name">
-      <page-login name="login" page="[[page]]" route="[[route]]"></page-login>
-      <page-dashboard name="dashboard" page="[[page]]"></page-dashboard>
-      <page-resources name="resources" page="[[page]]" route="[[subroute]]"></page-resources>
-      <page-jobs name="jobs" page="[[page]]"></page-jobs>
-      <page-agents name="agents" page="[[page]]"></page-agents>
-      <page-users name="users" page="[[page]]" route="[[subroute]]" id="users"></page-users>
-      <page-groups name="groups" page="[[page]]"></page-groups>
+      <page-login name="login" page="[[page]]" route="[[route]]" config="[[config]]"></page-login>
+      <page-dashboard name="dashboard" page="[[page]]" route="[[subroute]]" config="[[config]]"></page-dashboard>
+      <page-resources name="resources" page="[[page]]" route="[[subroute]]" config="[[config]]"></page-resources>
+      <page-jobs name="jobs" page="[[page]]" route="[[subroute]]" config="[[config]]"></page-jobs>
+      <page-agents name="agents" page="[[page]]" route="[[subroute]]" config="[[config]]"></page-agents>
+      <page-users name="users" page="[[page]]" route="[[subroute]]" config="[[config]]"></page-users>
+      <page-groups name="groups" page="[[page]]" route="[[subroute]]" config="[[config]]"></page-groups>
       <page-404 name="404" page="[[page]]"></page-404>
     </iron-pages>
     <paper-toast id="toast" always-on-top horizontal-align="right"></paper-toast>

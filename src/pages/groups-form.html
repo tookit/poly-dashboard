@@ -13,7 +13,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../../bower_components/paper-button/paper-button.html">
 <link rel="import" href="../elements/behaviors/ajax-request-behaviors.html">
 
-<dom-module id="page-users-form">
+<dom-module id="page-groups-form">
   <template>
     <div class="form-layout">
       <!-- <h3>New User</h3> -->
@@ -23,16 +23,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             id="ajax"
             auto
             headers="[[_buildHeader('auth')]]"
-            url="[[_buildAPIUrl(config.api.base,config.api.userList,route.path)]]"
+            url="[[_buildAPIUrl(config.api.base,config.api.groupList,route.path)]]"
             handle-as="json"
             last-response="{{response}}"
             ></iron-ajax>
       </template>
-      <form is="iron-form" id="form" method="POST" data-url$="[[_buildAPIUrl(config.api.base,config.api.userList,route.path)]]">
+      <form is="iron-form" id="form" method="POST" data-url$="[[_buildAPIUrl(config.api.base,config.api.groupList,route.path)]]">
         <paper-input error-message="First name required!" name="first_name" label="First Name" value="[[response.data.name]]" required></paper-input>
-        <paper-input error-message="Lastname required!" name="last_name" label="Last Name" value="[[response.data.name]]" required></paper-input>
-        <paper-input error-message="Invalid Email!" name="email" label="Email" type="email" value="[[response.data.email]]" required></paper-input>
-        <paper-input type="password" label="Password" type="password" name="password" value="" required></paper-input>
+        <paper-input error-message="Description" name="description" label="Description" value="[[response.data.description]]" ></paper-input>
         <br>
         <input type="submit">
       </form>
@@ -44,7 +42,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     'use strict';
 
     Polymer({
-      is: 'page-users-form',
+      is: 'page-groups-form',
 
       behaviors: [
         ESG.AjaxRequestBehaviors,
@@ -59,13 +57,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       },
 
       preSubmit: function(e){
-        var action = window.config.apiUrl + e.target.$.form.getAttribute('data-url');
+        var action = this.config.app.base + e.target.$.form.getAttribute('data-url');
         this.$.form.request.url = action;
         this.$.form.request.method =  (this.route.path) ? 'PUT' : 'POST';
         this.$.form.request.headers = {"content-type":"application/json"};
         console.log(this.$.form.request.headers);
 
       },
+
 
 
       ready: function(){

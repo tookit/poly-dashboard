@@ -36,8 +36,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       return (value === 'auth') ?  {"Authorization": "Bearer " + window.localStorage.token} : null;
     },
 
-    _buildUrl: function(value){
-      return window.config.apiUrl + value;
+    _buildAPIUrl: function(base,path,append = 0){
+      return (append === 0) ? base + path : base + path + append;
     },
 
     onResponse: function(e){

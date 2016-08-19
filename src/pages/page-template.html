@@ -24,8 +24,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../../bower_components/iron-icons/hardware-icons.html">
 <link rel="import" href="../../bower_components/iron-icons/maps-icons.html">
 <link rel="import" href="../../bower_components/iron-media-query/iron-media-query.html">
+<link rel="import" href="../elements/behaviors/config-behaviors.html">
 
-<link rel="import" href="../elements/data.html">
 
 <dom-module id="page-template">
 
@@ -151,7 +151,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     </style>
     <iron-media-query query="(min-width: 640px)" query-matches="{{largeScreen}}"></iron-media-query>
-    <app-data menu="{{menu}}" profile="{{profile}}"></app-data>
 
     <app-drawer-layout fullbleed id="drawerLayout">
 
@@ -162,17 +161,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <h3 hidden$="[[narrowDrawer]]" class="title">Cronman</h3>
         </app-toolbar>
         <div class="profile layout horizontal">
-          <img src$="[[profile.0.img]]" alt="admin">
+          <img src$="[[config.profile.0.img]]" alt="admin">
           <div class="personal flex" hidden$="[[narrowDrawer]]">
       			<h5 class="name">[[profile.0.name]]</h5>
-      			<small class="desig text-uppercase">[[profile.0.email]]</small>
+      			<small class="desig text-uppercase">[[config.profile.0.email]]</small>
       		</div>
         </div>
         <paper-menu attr-for-selected="name" selected="[[page]]" role="navigation">
-          <template is="dom-repeat" items="[[menu]]">
+          <template is="dom-repeat" items="[[config.menu]]">
             <template is="dom-if" if="[[item.subMenu]]">
               <paper-submenu opened="[[_computeOpened(item.subMenu,page)]]">
-                <a class="menu-trigger layout horizontal" href="/[[item.url]]" name="[[item.url]]">
+                <a class="menu-trigger layout horizontal" href="/[[item.url]]" name="[[item.url]]" >
                   <iron-icon icon="[[item.icon]]"></iron-icon>
                   <span class="flex" hidden$="[[narrowDrawer]]">[[item.title]]</span>
                   <iron-icon icon="[[_computeIconControl(item.subMenu,page)]]" class="control" hidden$="[[narrowDrawer]]"></iron-icon>
@@ -188,7 +187,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               </paper-submenu>
             </template>
             <template is="dom-if" if="[[!item.subMenu]]">
-              <a class="layout horizontal" href="/[[item.url]]" name$="[[item.url]]">
+              <a class="layout horizontal" href="/[[item.url]]" name$="[[item.url]]" on-tap="_nav">
                 <iron-icon icon="[[item.icon]]"></iron-icon>
                 <span hidden$="[[narrowDrawer]]">[[item.title]]</span>
               </a>
@@ -258,6 +257,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       observers: [
         // '_routePageChanged(routeData.page)'
       ],
+
+      _nav: function(e){
+        e.stopPropagation();
+      },
 
       _computeOpened: function(items,page){
         var find = items.filter(function(item){

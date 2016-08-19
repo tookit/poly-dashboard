@@ -23,25 +23,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         _data = data || {};
         if (data) {
           _data.menu = data.menu;
+          _data.profile = data.profile;
+          _data.config = data;
         }
         _els.forEach(function(el){ el.load(_data); });
       };
+
       Polymer({
         is: 'app-data',
 
-
-        ready: function() {
-
-          this.load(_data);
-        },
-
-        attached: function() {
-          if (!_data.menu) { this.$.req.generateRequest(); }
-          _els.push(this);
-        },
-        detached: function() {
-         _els.splice(_els.indexOf(this), 1);
-        },
         properties: {
           profile: {
             type: Array,
@@ -53,26 +43,31 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             readOnly: true,
             notify: true
           },
-          scopes:{
-            type: Array,
+          config:{
+            type: Object,
             notify: true,
-            value: []
+            readOnly: true
           }
         },
+        ready: function() {
 
-        observers: [
-          'updateMenu(menu,scopes)'
-        ],
+          this.load(_data);
+        },
 
-        updateMenu: function(menu,scopes){
-
-
+        attached: function() {
+          if (!_data.config) { this.$.req.generateRequest(); }
+          _els.push(this);
+        },
+        detached: function() {
+         _els.splice(_els.indexOf(this), 1);
         },
 
         load: function(data) {
-          if (data.menu) {
+          if (data.config) {
+            // this._set function only when properties is readOnly
             this._setMenu(data.menu);
             this._setProfile(data.profile);
+            this._setConfig(data);
           }
         },
 

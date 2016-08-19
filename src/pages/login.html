@@ -6,6 +6,7 @@
 <link rel="import" href="../../bower_components/paper-checkbox/paper-checkbox.html">
 <link rel="import" href="../../bower_components/paper-button/paper-button.html">
 <link rel="import" href="../../bower_components/paper-material/paper-material.html">
+<link rel="import" href="../elements/behaviors/config-behaviors.html">
 <dom-module id="page-login">
   <template>
   <style>
@@ -54,6 +55,7 @@
       is: 'page-login',
 
       behaviors: [
+        poly.elements.behavior.ConfigBehaviors
       ],
 
       properties: {
@@ -99,7 +101,8 @@
       },
 
       login: function(){
-          this.$.form.action =  window.config.apiUrl+"/auth/login";
+        console.log(this.config);
+          this.$.form.action =  this.config.api.base + this.config.api.login;
           this.$.form.submit();
       }
     });

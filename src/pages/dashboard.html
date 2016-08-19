@@ -9,17 +9,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 <link rel="import" href="../../bower_components/polymer/polymer.html">
 <link rel="import" href="page-template.html">
+<link rel="import" href="../elements/behaviors/config-behaviors.html">
 
 <dom-module id="page-dashboard">
   <style>
   </style>
   <template>
-    <page-template page=[[page]]>
+    <page-template page="[[page]]" config="[[config]]">
 
       <div class="content">
-        dashboard
+        <div class="">
+          dashboard page
+        </div>
       </div>
-
+      
     </page-template>
   </template>
   <script>
@@ -30,6 +33,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       is: 'page-dashboard',
 
       behaviors: [
+        poly.elements.behavior.ConfigBehaviors
       ],
 
       properties: {

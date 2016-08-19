@@ -1,4 +1,21 @@
 {
+    "api":{
+        "base": "http://local.api.dev",
+        "login": "/auth/login",
+        "userList": "/users",
+        "groupList": "/roles",
+        "resourceList": "/resources",
+        "permissionList": "/permissions"
+    },
+
+    "list":{
+      "user":{
+        "fields":[
+
+        ],
+      }
+    },
+
     "profile": [
         {
             "name": "Michael Wang",

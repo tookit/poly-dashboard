@@ -15,6 +15,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="users-form.html">
 <link rel="import" href="../elements/paper-datatable/paper-datatable.html">
 <link rel="import" href="../elements/behaviors/ajax-request-behaviors.html">
+<link rel="import" href="../elements/behaviors/config-behaviors.html">
 
 <dom-module id="page-users">
   <style>
@@ -34,7 +35,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             pattern="/:id"
             data="{{subrouteData}}">
         </app-route>
-    <page-template page="[[page]]">
+    <page-template page="[[page]]" config="[[config]]">
       <div class="content">
         <paper-material>
           <iron-pages role="sub" selected="[[_computeIronPages(route,subroute)]]" attr-for-selected="name">
@@ -43,7 +44,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                   id="ajax"
                   auto
                   headers="[[_buildHeader('auth')]]"
-                  url="[[_buildUrl('/users')]]"
+                  url="[[_buildAPIUrl(config.api.base,config.api.userList)]]"
                   handle-as="json"
                   last-response="{{data}}"
                   debounce-duration="300"></iron-ajax>
@@ -72,7 +73,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               </paper-datatable>
             </section>
             <section name="form">
-              <page-users-form route="[[subroute]]"></page-users-form>
+              <page-users-form route="[[subroute]]" config="[[config]]"></page-users-form>
             </section>
           </iron-pages>
         </paper-material>
@@ -88,7 +89,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       is: 'page-users',
 
       behaviors: [
-        ESG.AjaxRequestBehaviors
+        ESG.AjaxRequestBehaviors,
+        poly.elements.behavior.ConfigBehaviors
       ],
 
       properties: {

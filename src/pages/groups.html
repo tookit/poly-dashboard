@@ -8,16 +8,65 @@ Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 -->
 <link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="../../bower_components/iron-pages/iron-pages.html">
+<link rel="import" href="../../bower_components/app-route/app-route.html">
 <link rel="import" href="page-template.html">
+<link rel="import" href="groups-form.html">
+<link rel="import" href="../elements/paper-datatable/paper-datatable.html">
+<link rel="import" href="../elements/behaviors/ajax-request-behaviors.html">
+<link rel="import" href="../elements/behaviors/config-behaviors.html">
 
 <dom-module id="page-groups">
   <style>
+    paper-material{
+      background: #fff;
+      padding: 25px;
+    }
   </style>
   <template>
-    <page-template page=[[page]]>
-
+    <app-route
+        route="{{route}}"
+        pattern="/:action"
+        data="{{routeData}}"
+        tail="{{subroute}}"></app-route>
+        <app-route
+            route="{{subroute}}"
+            pattern="/:id"
+            data="{{subrouteData}}">
+        </app-route>
+    <page-template page="[[page]]" config="[[config]]">
       <div class="content">
-        [[page]]
+        <paper-material>
+          <iron-pages role="sub" selected="[[_computeIronPages(route,subroute)]]" attr-for-selected="name">
+            <section name="list">
+              <iron-ajax
+                  id="ajax"
+                  auto
+                  headers="[[_buildHeader('auth')]]"
+                  url="[[_buildAPIUrl(config.api.base,config.api.groupList)]]"
+                  handle-as="json"
+                  last-response="{{data}}"
+                  debounce-duration="300"></iron-ajax>
+              <paper-datatable data="{{data.data}}" selectable  multi-selection id="table">
+                <paper-datatable-column header="Name" property="name" type="String" sortable ></paper-datatable-column>
+                <paper-datatable-column header="Email" property="email" type="String"  sortable></paper-datatable-column>
+                <paper-datatable-column header="Description" property="description" type="String" sortable></paper-datatable-column>
+
+                <!-- <paper-datatable-column header="Created" property="created_at" type="String" align="right"></paper-datatable-column> -->
+                <paper-datatable-column header="Action" property="id" type="String" editable>
+                  <template>
+                    <a href="/groups/edit/[[value]]"><iron-icon icon="create"></iron-icon></a>
+                    <a end-point="/user/[[value]]"><iron-icon icon="delete"></iron-icon></a>
+                  </template>
+                </paper-datatable-column>
+              </paper-datatable>
+            </section>
+            <section name="form">
+              <page-groups-form route="[[subroute]]" config="[[config]]"></page-groups-form>
+            </section>
+          </iron-pages>
+        </paper-material>
       </div>
 
     </page-template>
@@ -30,25 +79,42 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       is: 'page-groups',
 
       behaviors: [
+        ESG.AjaxRequestBehaviors,
+        poly.elements.behavior.ConfigBehaviors
       ],
 
       properties: {
+        route: Object,
+        action: String,
+        action: {
+          type: String,
+          reflectToAttribute: true,
+          // observer: '_pageChanged'
+        },
+
         page: {
           type: String,
           reflectToAttribute: true,
           // observer: '_pageChanged'
         },
+
       },
       listeners:{
 
       },
 
-
-
       ready: function(){
-        console.log(this.page);
           // this.$.username.$.input.focus();
+      },
+
+      _computeIronPages: function(route,subrouteData){
+        return (route.path === '/create' || route.path.match(/^\/edit\/[\d]+$/gi) !== null ) ? 'form' : 'list';
+      },
+
+      _computeActiveClass: function(value){
+
       }
+
 
     });
   })();
